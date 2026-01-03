@@ -1,7 +1,7 @@
 import { Pie, PieChart } from "recharts";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartContainer, ChartLegend, ChartLegendContent } from "@/components/ui/chart";
-import { Button } from '@/components/ui/button'
+import Linechart from './Linechart.jsx';
 
 const chartData = [
     { status: "DONE", qc: 500, fill: "var(--color-DONE)" },
@@ -52,8 +52,8 @@ export default function Piechart() {
                     </ChartContainer>
                 </CardContent>
             </Card>
-            <div className="col-start-3 pt-10 items-center justify-center flex">
-                <Button className='shadow-md w-md h-10'>Add Work Order (New WO) </Button>
+            <div className="">
+                <Linechart />
             </div>
         </div>
     )

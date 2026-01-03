@@ -7,6 +7,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { SlArrowLeft } from "react-icons/sl";
 
 const fatdata = [
   {
@@ -76,7 +77,11 @@ export default function Formrekap() {
   const [dates, setDates] = useState({})
   const statusId = useId()
   return (
-    <div className="flex justify-center items-start min-h-screen p-10">
+    <div className="flex flex-col items-center min-h-screen p-10">
+      <Button className="mb-4 self-start flex group" variant='ghost'>
+        <SlArrowLeft className='transition-transform duration-150 group-hover:-translate-x-0.5'></SlArrowLeft>
+        Back to Dashboard
+      </Button>
       <div className="rounded-md border border-amber-700 shadow-md max-h-[80vh] overflow-y-auto w-full">
         <Table className='text-xs'>
           {/* <TableCaption>Striped rows table.</TableCaption> */}
@@ -253,6 +258,10 @@ export default function Formrekap() {
                     </TableRow>
                 </TableFooter> */}
         </Table>
+      </div>
+      <div className='w-full flex justify-end gap-4 mt-4'>
+        <Button variant='secondary'>Cancel</Button>
+        <Button>Save Changes</Button>
       </div>
     </div>
   )

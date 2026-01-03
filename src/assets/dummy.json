@@ -23,16 +23,47 @@
         "fat": 12,
         "status": "Approved"
     },
-        {
+    {
         "id": 5,
         "wo": "WP212025071723",
         "fat": 10,
         "status": "Rejected"
     },
-        {
+    {
         "id": 6,
         "wo": "WP212025071729",
         "fat": 10,
         "status": "Rejected"
+    },
+        {
+        "id": 7,
+        "wo": "WP212025071729",
+        "fat": 10,
+        "status": "Not Yet"
+    },
+        {
+        "id": 8,
+        "wo": "WP212025071729",
+        "fat": 10,
+        "status": "Not Yet"
+    },
+        {
+        "id": 9,
+        "wo": "WP212025071729",
+        "fat": 10,
+        "status": "Not Yet"
+    },
+        {
+        "id": 10,
+        "wo": "WP212025071729",
+        "fat": 10,
+        "status": "Not Yet"
+    },
+        {
+        "id": 11,
+        "wo": "WP212025071729",
+        "fat": 10,
+        "status": "Not Yet"
     }
+
 ]
