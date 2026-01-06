@@ -7,24 +7,24 @@ import { Pagination, PaginationContent, PaginationItem, PaginationLink, Paginati
 import { Input } from '@/components/ui/input';
 import { CiSearch } from "react-icons/ci";
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 
 const columns = [
   {
     id: 'select',
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && 'indeterminate')
-        }
-        onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)}
-      />
-    ),
-    cell: ({ row }) => (
+    header: null,
+    cell: ({ row, table }) => (
       <Checkbox
         checked={row.getIsSelected()}
-        onCheckedChange={value => row.toggleSelected(!!value)}
+        onCheckedChange={(value) => {
+          if (value) {
+            table.resetRowSelection()
+            row.toggleSelected(true)
+          } else {
+            row.toggleSelected(false)
+          }
+        }}
       />
     ),
     enableSorting: false,
@@ -61,16 +61,27 @@ const columns = [
 export default function Datatable() {
   const [sorting, setSorting] = useState([])
   const [rowSelection, setRowSelection] = useState({})
+  const navigate = useNavigate()
+  const [pagination, setPagination] = useState({
+    pageIndex: 0,
+    pageSize: 10
+  })
+
+  const handleDirectQC = () => {
+    navigate('/qc');
+  }
 
   const table = useReactTable({
     data,
     columns,
     state: {
       sorting,
-      rowSelection
+      rowSelection,
+      pagination
     },
     onSortingChange: setSorting,
     onRowSelectionChange: setRowSelection,
+    onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -84,7 +95,7 @@ export default function Datatable() {
           <CiSearch className='absolute left-3 top-1/2 -translate-y-1/2 size-5 text-muted-foreground pointer-events-none'></CiSearch>
           <Input placeholder="Search..." className="pl-10"></Input>
         </div>
-        <Button disabled className="disabled:opacity-30 shadow-md ml-auto w-40">
+        <Button disabled={Object.keys(rowSelection).length === 0} onClick={handleDirectQC} className="disabled:opacity-30 shadow-md ml-auto w-40">
           Rekap QC
         </Button>
       </div>
@@ -134,19 +145,20 @@ export default function Datatable() {
         <Pagination>
           <PaginationContent>
             <PaginationItem>
-              <PaginationPrevious href='#' />
+              <Button variant="outline" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+                <p>Previous</p>
+              </Button>
             </PaginationItem>
             <PaginationItem>
-              <PaginationLink href='#'>1</PaginationLink>
+              <span className="text-sm">
+                {table.getState().pagination.pageIndex + 1} of{' '}
+                {table.getPageCount()}
+              </span>
             </PaginationItem>
             <PaginationItem>
-              <PaginationLink href='#' isActive>2</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href='#'>3</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationNext href='#' />
+              <Button variant="outline" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+                <p>Next</p>
+              </Button>
             </PaginationItem>
           </PaginationContent>
         </Pagination>

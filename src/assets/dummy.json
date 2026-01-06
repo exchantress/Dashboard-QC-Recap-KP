@@ -35,35 +35,64 @@
         "fat": 10,
         "status": "Rejected"
     },
-        {
+    {
         "id": 7,
         "wo": "WP212025071729",
         "fat": 10,
         "status": "Not Yet"
     },
-        {
+    {
         "id": 8,
         "wo": "WP212025071729",
         "fat": 10,
         "status": "Not Yet"
     },
-        {
+    {
         "id": 9,
         "wo": "WP212025071729",
         "fat": 10,
         "status": "Not Yet"
     },
-        {
+    {
         "id": 10,
         "wo": "WP212025071729",
         "fat": 10,
         "status": "Not Yet"
     },
-        {
+    {
         "id": 11,
-        "wo": "WP212025071729",
+        "wo": "WP212025071722",
         "fat": 10,
+        "status": "Approved"
+    },
+    {
+        "id": 12,
+        "wo": "WP212025071722",
+        "fat": 10,
+        "status": "Approved"
+    },
+        {
+        "id": 13,
+        "wo": "WP212025071717",
+        "fat": 10,
+        "status": "Approved"
+    },
+    {
+        "id": 14,
+        "wo": "WP212025071718",
+        "fat": 5,
         "status": "Not Yet"
+    },
+    {
+        "id": 15,
+        "wo": "WP212025071719",
+        "fat": 8,
+        "status": "Rejected"
+    },
+    {
+        "id": 16,
+        "wo": "WP212025071719",
+        "fat": 10,
+        "status": "Rejected"
     }
-
 ]

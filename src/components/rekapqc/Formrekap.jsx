@@ -8,77 +8,22 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { SlArrowLeft } from "react-icons/sl";
-
-const fatdata = [
-  {
-    fat: 'FAT_SPLG677',
-    olt: 'AMPERA-01',
-    tikor: '-2.9191919, 104.7373737',
-    hc: '5',
-  },
-  {
-    fat: 'FAT_SPLG678',
-    olt: 'AMPERA-01',
-    tikor: '-2.9191919, 104.7373737',
-    hc: '2',
-  }, {
-    fat: 'FAT_SPLG679',
-    olt: 'AMPERA-01',
-    tikor: '-2.9191919, 104.7373737',
-    hc: '1',
-  },
-  {
-    fat: 'FAT_SPLG680',
-    olt: 'AMPERA-01',
-    tikor: '-2.9191919, 104.7373737',
-    hc: '11',
-  },
-  {
-    fat: 'FAT_SPLG681',
-    olt: 'AMPERA-01',
-    tikor: '-2.9191919, 104.7373737',
-    hc: '0',
-  },
-  {
-    fat: 'FAT_SPLG677',
-    olt: 'AMPERA-01',
-    tikor: '-2.9191919, 104.7373737',
-    hc: '5',
-  },
-  {
-    fat: 'FAT_SPLG678',
-    olt: 'AMPERA-01',
-    tikor: '-2.9191919, 104.7373737',
-    hc: '2',
-  }, {
-    fat: 'FAT_SPLG679',
-    olt: 'AMPERA-01',
-    tikor: '-2.9191919, 104.7373737',
-    hc: '1',
-  },
-  {
-    fat: 'FAT_SPLG680',
-    olt: 'AMPERA-01',
-    tikor: '-2.9191919, 104.7373737',
-    hc: '11',
-  },
-  {
-    fat: 'FAT_SPLG681',
-    olt: 'AMPERA-01',
-    tikor: '-2.9191919, 104.7373737',
-    hc: '0',
-  }
-]
-
+import { useNavigate } from 'react-router-dom';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog'
+import fatdata from '@/assets/wodummy.json'
 
 
 export default function Formrekap() {
   // const [open, setOpen] = useState(false)
+  const navigate = useNavigate()
+  const handleBack = () => {
+    navigate('/');
+  }
   const [dates, setDates] = useState({})
   const statusId = useId()
   return (
     <div className="flex flex-col items-center min-h-screen p-10">
-      <Button className="mb-4 self-start flex group" variant='ghost'>
+      <Button onClick={handleBack} className="mb-4 self-start flex group" variant='ghost'>
         <SlArrowLeft className='transition-transform duration-150 group-hover:-translate-x-0.5'></SlArrowLeft>
         Back to Dashboard
       </Button>
@@ -260,8 +205,21 @@ export default function Formrekap() {
         </Table>
       </div>
       <div className='w-full flex justify-end gap-4 mt-4'>
-        <Button variant='secondary'>Cancel</Button>
-        <Button>Save Changes</Button>
+        <Button onClick={handleBack} variant='secondary'>Cancel</Button>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button>Save Changes</Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Apakah kamu yakin?</AlertDialogTitle>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={handleBack}>Continue</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </div>
   )

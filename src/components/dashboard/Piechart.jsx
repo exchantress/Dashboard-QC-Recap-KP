@@ -3,12 +3,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { ChartContainer, ChartLegend, ChartLegendContent } from "@/components/ui/chart";
 import Linechart from './Linechart.jsx';
 
-const chartData = [
-    { status: "DONE", qc: 500, fill: "var(--color-DONE)" },
-    { status: "REJECT", qc: 125, fill: "var(--color-REJECT)" },
-    { status: "NOTYET", qc: 300, fill: "var(--color-NOTYET)" },
-]
-
 const chartConfig = {
     qc: {
         label: "Status",
@@ -27,7 +21,12 @@ const chartConfig = {
     },
 }
 
-export default function Piechart() {
+export default function Piechart({ done, pending, reject }) {
+    const chartData = [
+        { status: "DONE", value: done, fill: "var(--color-DONE)" },
+        { status: "REJECT", value: reject, fill: "var(--color-REJECT)" },
+        { status: "NOTYET", value: pending, fill: "var(--color-NOTYET)" },
+    ];
     return (
         <div className="row-span-2 max-w-md">
             <Card className="flex flex-col">
@@ -40,7 +39,7 @@ export default function Piechart() {
                         <PieChart>
                             <Pie
                                 data={chartData}
-                                dataKey="qc"
+                                dataKey="value"
                                 nameKey="status"
                                 innerRadius={60}
                             />
