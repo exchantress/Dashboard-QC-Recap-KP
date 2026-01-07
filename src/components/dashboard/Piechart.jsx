@@ -2,6 +2,9 @@ import { Pie, PieChart } from "recharts";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartContainer, ChartLegend, ChartLegendContent } from "@/components/ui/chart";
 import Linechart from './Linechart.jsx';
+import { useQuery } from "@tanstack/react-query";
+import { fetchMonthly } from "@/utils/Services/Yohan/getDashboard";
+import { Spinner } from "../ui/spinner.jsx";
 
 const chartConfig = {
     qc: {
@@ -21,12 +24,34 @@ const chartConfig = {
     },
 }
 
-export default function Piechart({ done, pending, reject }) {
+export default function Piechart({ data, isLoading }) {
+    const monthlyQuery = useQuery({
+        queryKey: ["monthly"],
+        queryFn: fetchMonthly
+    });
+
     const chartData = [
-        { status: "DONE", value: done, fill: "var(--color-DONE)" },
-        { status: "REJECT", value: reject, fill: "var(--color-REJECT)" },
-        { status: "NOTYET", value: pending, fill: "var(--color-NOTYET)" },
+        { status: "DONE", value: data?.approve || 0, fill: "var(--color-DONE)" },
+        { status: "REJECT", value: data?.reject || 0, fill: "var(--color-REJECT)" },
+        { status: "NOTYET", value: data?.notyet || 0, fill: "var(--color-NOTYET)" },
     ];
+
+    if (isLoading) {
+        return <div className="row-span-2 max-w-md">
+            <Card className="flex flex-col">
+                <CardHeader className="items-center pb-0">
+                    <CardTitle>Statistik Status WO</CardTitle>
+                    <CardDescription>January - Desember 2025</CardDescription>
+                </CardHeader>
+                <CardContent className="flex-1 pb-0">
+                    <Spinner></Spinner>
+                </CardContent>
+            </Card>
+            <div className="">
+                <Linechart data={monthlyQuery.data} isLoading={monthlyQuery.isLoading} />
+            </div>
+        </div>
+    }
     return (
         <div className="row-span-2 max-w-md">
             <Card className="flex flex-col">
@@ -52,7 +77,7 @@ export default function Piechart({ done, pending, reject }) {
                 </CardContent>
             </Card>
             <div className="">
-                <Linechart />
+                <Linechart data={monthlyQuery.data} isLoading={monthlyQuery.isLoading} />
             </div>
         </div>
     )
