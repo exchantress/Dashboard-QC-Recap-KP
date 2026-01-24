@@ -41,7 +41,7 @@ export default function Piechart({ data, isLoading }) {
             <Card className="flex flex-col">
                 <CardHeader className="items-center pb-0">
                     <CardTitle>Statistik Status WO</CardTitle>
-                    <CardDescription>January - Desember 2025</CardDescription>
+                    <CardDescription>2026</CardDescription>
                 </CardHeader>
                 <CardContent className="flex-1 pb-0">
                     <Spinner></Spinner>
@@ -53,11 +53,11 @@ export default function Piechart({ data, isLoading }) {
         </div>
     }
     return (
-        <div className="row-span-2 max-w-md">
+        <div className="row-span-2">
             <Card className="flex flex-col">
                 <CardHeader className="items-center pb-0">
                     <CardTitle>Statistik Status WO</CardTitle>
-                    <CardDescription>January - Desember 2025</CardDescription>
+                    <CardDescription>Tahun 2026</CardDescription>
                 </CardHeader>
                 <CardContent className="flex-1 pb-0">
                     <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-96">
@@ -76,9 +76,7 @@ export default function Piechart({ data, isLoading }) {
                     </ChartContainer>
                 </CardContent>
             </Card>
-            <div className="">
-                <Linechart data={monthlyQuery.data} isLoading={monthlyQuery.isLoading} />
-            </div>
+            <Linechart data={monthlyQuery.data} isLoading={monthlyQuery.isLoading} />
         </div>
     )
 }

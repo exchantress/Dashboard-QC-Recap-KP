@@ -67,7 +67,7 @@ export default function Linechart({ data = [], isLoading }) {
                     <div className="flex w-full items-start gap-2 text-sm">
                         <div className="grid gap-2">
                             <div className="flex items-center gap-2 leading-none font-medium">
-                                June - Desember 2025 <TrendingUp className="h-4 w-4" />
+                                August - February 2026 <TrendingUp className="h-4 w-4" />
                             </div>
                             <div className="text-muted-foreground flex items-center gap-2 leading-none">
                                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, nostrum.

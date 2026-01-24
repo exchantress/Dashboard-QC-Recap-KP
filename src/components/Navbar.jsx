@@ -6,7 +6,7 @@ export default function Navbar() {
             <div className="flex px-5 gap-3 items-center">
                 <RiDashboardHorizontalLine className="flex text-black w-8 h-8"></RiDashboardHorizontalLine>
                 <h2 className="text-xl text-black font-semibold">
-                    Dashboard GeLoo
+                    Dashboard QC
                 </h2>
             </div>
         </div>
